@@ -13,4 +13,5 @@ expect {
     "*password:" {send "$PASSWD\r"}
 }
 send "cd $DIR\r"
+send "pwd"
 interact
