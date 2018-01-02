@@ -49,7 +49,7 @@ while [ True ];do
     port=$(awk -v num=$number 'BEGIN {FS=":"} {if($1 == num) {print $3}}' $pw)
     username=$(awk -v num=$number 'BEGIN {FS=":"} {if($1 == num) {print $4}}' $pw)
     passwd=$(awk -v num=$number 'BEGIN {FS=":"} {if($1 == num) {print $5}}' $pw)
-
+    dir=$(awk -v num=$number 'BEGIN {FS=":"} {if($1 == num) {print $7}}' $pw)
     case $number in
         [0-9]|[0-9][0-9]|[0-9][0-9][0-9])
             echo $passwd | grep -q ".pem$"
@@ -58,7 +58,7 @@ while [ True ];do
                 ssh -i $direc/keys/$passwd $username@$ipaddr -p $port
                 echo "ssh -i $direc/$passwd $username@$ipaddr -p $port"
             else
-                expect -f $direc/ssh_login.exp $ipaddr $username $passwd $port
+                expect -f $direc/ssh_login.exp $ipaddr $username $passwd $port $dir
             fi
         ;;
         "q"|"quit")
