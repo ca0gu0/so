@@ -1,3 +1,7 @@
+# update by fei33423
+   新增登录后 cd 到指定的路径. 配置文件中最后一列
+   1:192.168.88.128:22:root:toor:虚拟机web服务器:/root/
+
 # so
 This is a SSH login tool
 
