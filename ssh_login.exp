@@ -3,11 +3,15 @@ set TARGET [lindex $argv 0]
 set USER [lindex $argv 1]
 set PASSWD [lindex $argv 2]
 set PORT [lindex $argv 3]
+set DIR [lindex $argv 4]
 set timeout 10
 
-spawn ssh $USER@$TARGET -p $PORT
+spawn ssh $USER@$TARGET -p $PORT 
+#'cd /root/'
 expect {
     "*yes/no" {send "yes\r"; exp_continue}
     "*password:" {send "$PASSWD\r"}
 }
+send "cd $DIR\r"
+send "pwd\r"
 interact
